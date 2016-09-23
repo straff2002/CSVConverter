@@ -1,0 +1,5 @@
+CSV/XML Conveter
+Created by Peter N. Bidali (njoroge7@gmail.com)
+
+This application was developed on the Django Framework and uses postgresql version >= 9.1
+There is also a 'lite' version that neither requires Django nor Postgres, the result of which is less features.

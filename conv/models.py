@@ -1,0 +1,20 @@
+from django.db import models
+
+# Create your models here.
+
+
+
+class Configurations(models.Model):
+    config_name = models.CharField(max_length=64)
+    config_text = models.TextField()
+    upload_date = models.DateTimeField('date uploaded', auto_now_add=True)
+    
+
+class ConvertedFiles(models.Model):
+    #config_file = models.ForeignKey(Configurations, on_delete=models.CASCADE)
+    file_name   = models.CharField(max_length=64)
+    xml_text    = models.CharField(max_length=200)
+    json_text   = models.TextField()
+    xml_id      = models.CharField(max_length=10)
+
+    create_date = models.DateTimeField('date created', auto_now_add=True)

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head profile="http://dublincore.org/documents/dcmi-terms/"><meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/><title xml:lang="en-US">CSV CONVERTOR</title><meta name="DCTERMS.title" content="" xml:lang="en-US"/><meta name="DCTERMS.language" content="en-US" scheme="DCTERMS.RFC4646"/><meta name="DCTERMS.source" content="http://xml.openoffice.org/odf2xhtml"/><meta name="DCTERMS.issued" content="2016-04-13T17:18:34.521163198" scheme="DCTERMS.W3CDTF"/><meta name="DCTERMS.modified" content="2016-04-13T17:23:06.476407890" scheme="DCTERMS.W3CDTF"/><meta name="DCTERMS.provenance" content="" xml:lang="en-US"/><meta name="DCTERMS.subject" content="," xml:lang="en-US"/><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" hreflang="en"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" hreflang="en"/><link rel="schema.DCTYPE" href="http://purl.org/dc/dcmitype/" hreflang="en"/><link rel="schema.DCAM" href="http://purl.org/dc/dcam/" hreflang="en"/><style type="text/css">
+	table { border-collapse:collapse; border-spacing:0; empty-cells:show }
+	td, th { vertical-align:top; font-size:12pt;}
+	h1, h2, h3, h4, h5, h6 { text-align:center; }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 10;
+            overflow: hidden;
+            background-color: #777;
+            }
+        li {
+            float: left;
+           }
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+             }
+         a:hover:not(.active) {
+            background-color: #111;
+                               }
+         .active {
+            background-color:#4CAF50;
+                  }
+        td { width:35% }
+        .C1 {
+            width:40%;
+            text-align: center;
+             }
+	</style>
+
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+        <script src="/static/admin/js/jquery.js" type="text/javascript"></script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+            $("[name='config_file']").val('upload');
+            $("#conf_method").change(function(event) {
+                var meth = $("#conf_method").val();
+                if (meth === "upload"){
+                $(".sel-a").show();
+                $(".sel-b").hide();
+                                        }
+                else {
+                $(".sel-a").hide();
+                $(".sel-b").show();
+                      }
+                                                       }
+                          )}
+                          );
+         function addFile() {
+            $(".P5").toggle() }
+        function hideFunc(el) {
+            if ( el == 'csv' ){
+                $(".converter").show();
+                $(".downloader").hide();}
+            else {
+                $(".downloader").show();
+                $(".converter").hide();}}
+        </script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+        $("#search_conf").keyup(function(){
+            var data = $("#search_conf").val();
+            $.post("/conv/getconf.py", {"confname": data}, function(data, status){$("#data_conf").html(data)}
+                   );
+                                          })
+                                         });
+
+        </script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+        $("#search_conf").change(function(event){
+            var data = $("#search_conf").val();
+            $.post("/conv/getprev.py", {"confname": data}, function(data, status){$("#preview").html(data)}
+                   );
+                                          })
+                                       });
+        </script>
+        <script type="text/javascript">
+
+        function getPage(id, direction){
+            $.post("/conv/getpage.py", {"last_id": id, "direction": direction}, function(data, status){$("#db_data").html(data)})
+                                   }
+ 
+        </script>
+        </meta>
+
+</head><body dir="ltr" style="width:100%;">
+
+<div style="position: fixed; top:0; background-color:grey; width:100%;">
+<h2 class="P1" style="text-color:green;">SkunkWorks</h2>
+<h3 class="P2"></h3>
+<ul id="nav" style="width:100%">
+<li style="width:49%;"><a  id="link" onclick="hideFunc('csv')">CSV Converter</a></li>
+<li style="width:49%;"><a  id="link" onclick="hideFunc('files')" >Converted Files</a></li>
+</ul>
+</div>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<div class="converter">
+<div  style="position: auto; top:2;">
+<form method="POST" enctype="multipart/form-data" action="load" width="100%" >
+{% csrf_token %}
+
+
+<fieldset style="width:50%; top:1;" >
+<legend>Configuration</legend>
+<p class="P3"> </p><p class="P4"><span>
+<table width="100%">
+<tr>
+<td>What are you moving from? </td>
+<td>
+<select name="config_file" id="conf_method">
+<option value="upload" selected="true" required="true">Upload JSON file</option>
+<option value="select">Select from database</option>
+</select>
+</td>
+</tr>
+
+
+<tr class="sel-a">
+<td>Config File:</td>
+<td><input type="file" name="config_file_upload" id="conf_file"></td>
+</tr>
+
+
+<tr hidden="true" class="sel-b">
+<td>Database File:</td>
+<td>
+<input name="confname" type="text" id="search_conf" list="data_conf"></input>
+<datalist id="data_conf">
+</datalist>
+</td>
+</tr>
+<tr>
+<td>XML ID:</td>
+<td>
+<input name="xml_id" required="true">
+</input>
+
+</td>
+</tr>
+<tr>
+<td>Save as:</td>
+<td>
+<input name="save_name">
+</input>
+</td>
+</tr>
+</table>
+</fieldset>
+
+<fieldset >
+<legend>
+<p class="P4">CSV Files:</p></legend>
+<p class="P4" 1d="p1">CSV 1:<span> </span><span> <span class="T1"><input type="file" name="fileupload" ></span></span></p>
+<p class="P4" 1d="p2">CSV 2:<span> </span><span> <span class="T1"><input type="file" name="fileupload" ></span></span></p>
+<p class="P4" 1d="p3">CSV 3:<span> </span><span> <span class="T1"><input type="file" name="fileupload" ></span></span></p>
+<p class="P4" 1d="p4">CSV 4:<span> </span><span> <span class="T1"><input type="file" name="fileupload" ></span></span></p>
+<p class="P4" 1d="p5">CSV 5:<span> </span><span> <span class="T1"><input type="file" name="fileupload" ></span></span></p>
+<p class="P5" 1d="p6" hidden="true">CSV 6:<span> </span><span> <span class="T1"><input type="file" name="fileupload" ></span></span></p>
+<p class="P5" 1d="p7" hidden="true">CSV 7:<span> </span><span> <span class="T1"><input type="file" name="fileupload" ></span></span></p>
+<p class="P5" 1d="p8" hidden="true">CSV 8:<span> </span><span> <span class="T1"><input type="file" name="fileupload" ></span></span></p>
+<p class="P5" 1d="p9" hidden="true">CSV 9:<span> </span><span> <span class="T1"><input type="file" name="fileupload" ></span></span></p>
+<p class="P5" 1d="p10" hidden="true">CSV 10:<span> </span><span> <span class="T1"><input type="file" name="fileupload" ></span></span></p>
+
+<p>
+<input type="button" onclick="addFile()" value="Add files" />
+</fieldset>
+<div class="Table2">
+
+
+<input type="submit" value="Submit files" />
+</div/>
+
+</p>
+</form>
+</div>
+</div>
+<div class="downloader" hidden>
+<fieldset>
+<form>
+
+</form>
+</fieldset>
+<fieldset>
+<table style="width:80%;" id="db_data">
+{% include "conv/db_data.html" %}
+</table>
+</fieldset>
+</div>
+<body>
+
+</body>
+
+<p class="P4"> </p></body></html>

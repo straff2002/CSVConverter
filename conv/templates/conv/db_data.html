@@ -1,0 +1,37 @@
+<tr>
+<th >Name</th>
+<th >Date</th>
+<th style="text-align:centre; width:5%">XML ID</th>
+<th style="text-align:centre; width:5%">CSV</th>
+<th style="text-align:centre; width:5%">XML</th>
+</tr>
+{% for row in table %}
+<tr>
+<td >{{ row.file_name }}</td>
+<td >{{ row.create_date }}</td>
+<td >{{ row.xml_id }}</td>
+<td style="text-align:centre; width:10%"><a href="conv/getfile?type=csv&id={{ row.id }}">csv</input></td>
+<td style="text-align:centre; width:10%"><a href="conv/getfile?type=xml&id={{ row.id }}">xml</input></td>
+</tr>
+{% endfor %}
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>
+{% if not first %}
+<input type="button" name="last_id" style="color:red;"  onclick="getPage({{ last_id }}, 'prev')" value="prev"></input>
+{% endif %}
+</td><td>
+{% if not last %}
+<input type="button" name="last_id" style="color:red;"  onclick="getPage({{ last_id }}, 'next')" value="next"></input>
+{% endif %}
+</td>
+</tr>
+

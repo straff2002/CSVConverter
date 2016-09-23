@@ -1,0 +1,21 @@
+<tr>
+<th >Name</th>
+<th >Date</th>
+<th style="text-align:centre; width:5%">View</th>
+<th style="text-align:centre; width:5%">Use</th>
+</tr>
+{% for row in conf_files %}
+<tr>
+<td >{{ row.config_name }}</td>
+<td >{{ row.upload_date }}</td>
+<td style="text-align:centre; width:10%"><a href="conv/getconftable?action=view&id={{ row.id }}">view</a></td>
+<td style="text-align:centre; width:10%"><a onclick="setConf( {{ row.id }} )" >use</a></td>
+</tr>
+{% endfor %}
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+

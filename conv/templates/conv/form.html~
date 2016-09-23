@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" "http://www.w3.org/Math/DTD/mathml2/xhtml-math11-f.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><!--This file was converted to xhtml by LibreOffice - see http://cgit.freedesktop.org/libreoffice/core/tree/filter/source/xslt for the code.--><head profile="http://dublincore.org/documents/dcmi-terms/"><meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/><title xml:lang="en-US">CSV CONVERTOR</title><meta name="DCTERMS.title" content="" xml:lang="en-US"/><meta name="DCTERMS.language" content="en-US" scheme="DCTERMS.RFC4646"/><meta name="DCTERMS.source" content="http://xml.openoffice.org/odf2xhtml"/><meta name="DCTERMS.issued" content="2016-04-13T17:18:34.521163198" scheme="DCTERMS.W3CDTF"/><meta name="DCTERMS.modified" content="2016-04-13T17:23:06.476407890" scheme="DCTERMS.W3CDTF"/><meta name="DCTERMS.provenance" content="" xml:lang="en-US"/><meta name="DCTERMS.subject" content="," xml:lang="en-US"/><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" hreflang="en"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" hreflang="en"/><link rel="schema.DCTYPE" href="http://purl.org/dc/dcmitype/" hreflang="en"/><link rel="schema.DCAM" href="http://purl.org/dc/dcam/" hreflang="en"/><style type="text/css">
+{% autoescape off %}
+	@page {  }
+	table { border-collapse:collapse; border-spacing:0; empty-cells:show }
+	td, th { vertical-align:top; font-size:12pt;}
+	h1, h2, h3, h4, h5, h6 { clear:both }
+	ol, ul { margin:0; padding:0;}
+	li { list-style: none; margin:0; padding:0;}
+	<!-- "li span.odfLiEnd" - IE 7 issue-->
+	li span. { clear: both; line-height:0; width:0; height:0; margin:0; padding:0; }
+	span.footnodeNumber { padding-right:1em; }
+	span.annotation_style_by_filter { font-size:95%%; font-family:Arial; background-color:#fff000;  margin:0; border:0; padding:0;  }
+	* { margin:0;}
+	.P1 { font-size:24pt; font-family:Liberation Serif; writing-mode:page; text-align:center ! important; }
+	.P2 { font-size:14pt; font-family:Liberation Serif; writing-mode:page; text-align:center ! important; }
+	.P3 { font-size:14pt; font-family:Liberation Serif; writing-mode:page; text-align:left ! important; }
+	.P4 { font-size:14pt; font-family:Liberation Serif; writing-mode:page; text-align:left ! important; }
+        td { border:  1px; solid; #000000; }
+	<!-- ODF styles with no properties representable as CSS -->
+	.T1  { }
+        .R1 { font-weight: bold }
+	</style>
+
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+        <script src="/static/admin/js/jquery.js" type="text/javascript"></script>
+        <script type="text/javascript">
+        var config = {{ config_s }};
+        $(document).ready(function() {
+            $("input").change(function(event) {
+                row_id = $(this).parent().parent()[0].id
+                index = $(this).parent().index();
+                //field_size = config.fields[index].validation.fieldSize;
+
+                flag = false // check whether row's conditions are met
+                $( "#" + row_id + " input" ).each(function( index ){
+                    if (config.fields[index].validation.fieldType == "string") {
+                      field_size = config.fields[index].validation.fieldSize;
+                        if ( $(this)[0].value.length > field_size ){
+                            $(this)[0].style.color = "red" //set or get color
+                            flag = true 
+                                                                                                                         }
+                        else {
+                            $(this)[0].style.color = "blue"
+                            //alert("no")
+                              }
+                                                                     }
+                            //alert(flag)                               
+                                                                     })
+                if ( flag == true ){
+                    $("#" + row_id)[0].style.border = "1px solid red"
+                                    }
+                else {
+                    $("#" + row_id)[0].style.border = "1px solid blue"
+                      }
+
+
+        });
+        });
+
+        $(document).ready(function() {
+            $("input").change(function(event) {
+                row_id = $(this).parent().parent()[0].id
+                index = $(this).parent().index();
+                //field_size = config.fields[index].validation.fieldSize;
+
+                flag = false // check whether row's conditions are met
+                $( "#" + row_id + " input" ).each(function( index ){
+                    if (config.fields[index].validation.fieldType == "string") {
+                      field_size = config.fields[index].validation.fieldSize;
+                        if ( $(this)[0].value.length > field_size ){
+                            $(this)[0].style.color = "red" //set or get color
+                            flag = true 
+                                                                                                                         }
+                        else {
+                            $(this)[0].style.color = "blue"
+                            //alert("no")
+                              }
+                                                                     }
+                            //alert(flag)                               
+                                                                     })
+                if ( flag == true ){
+                    $("#" + row_id)[0].style.border = "1px solid red"
+                                    }
+                else {
+                    $("#" + row_id)[0].style.border = "1px solid blue"
+                      }
+
+
+        });
+        });
+        
+        </script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+            $("[name='cell']").change(function(event) {
+                row_id = $(this).parent().parent()[0].id
+                index = $(this).parent().index();
+                //field_size = config.fields[index].validation.fieldSize;
+
+                flag = false // check whether row's conditions are met
+                $( "#" + row_id + " input" ).each(function( index ){
+                    if (config.fields[index].validation.fieldType == "string") {
+                      field_size = config.fields[index].validation.fieldSize;
+                        if ( $(this)[0].value.length > field_size ){
+                            $(this)[0].style.color = "red" //set or get color
+                            flag = true 
+                                                                                                                         }
+                        else {
+                            $(this)[0].style.color = "blue"
+                            //alert("no")
+                              }
+                                                                     }
+                            //alert(flag)                               
+                                                                     })
+                if ( flag == true ){
+                    $("#" + row_id)[0].style.border = "1px solid red"
+                                    }
+                else {
+                    $("#" + row_id)[0].style.border = "1px solid blue"
+                      }
+
+
+        });
+        });
+        
+        </script>
+
+
+
+        </meta>
+
+</head><body dir="ltr" style="max-width:8.2681in;margin-top:0.7874in; margin-bottom:0.7874in; margin-left:0.7874in; margin-right:0.7874in; writing-mode:lr-tb; ">
+<p class="P1">SkunkWorks</p>
+<p class="P2">CSV Converter</p><p class="P2"> </p>
+<form method="POST" enctype="multipart/form-data" action="conv">
+{% csrf_token %}
+<input type="hidden" name="length" value="{{ length }}"></input>
+<input type="hidden" name="save_name" value="{{ save_name }}"></input>
+<input type="hidden" name="xml_id" value="{{ xml_id }}"></input>
+<table width="120%">
+<tr>
+{% for col in config.headers %}
+<th >{{ col }}</th>
+{% endfor %}
+</tr>
+<tr>
+{% for col in config.headers %}
+<td hidden="true"><input name="headers" value="{{ col }}"></input></td>
+{% endfor %}
+</tr>
+{% for row in table %}
+<tr id="row{{ row.0.row_nmbr }}">
+{% for cell in row %}
+
+<td style="width:{{ cell.cell_width }}%;" class="td">
+<input class="in" value="{{ cell.value }}" {{ cell.style }} {{ cell.type }} name="cell"></input>
+</td>
+{% endfor %}
+</tr>
+{% endfor %}
+</table>
+        <div class="Table2">
+        <select name="export_as">
+        <option value="xml" selected="true">XML</option>
+        <option value="csv">CSV</option>
+        </select>
+        <input type="submit" value="Export XML" />
+        
+        </div/>
+        </p>
+        </form>  
+        <body>
+        </body>
+
+        <p class="P4"> </p></body></html>
+{% endautoescape %}

@@ -1,0 +1,38 @@
+                  CSV/XML Conveter Installation from Source Code
+
+___________________________________________________________________
+                 INSTALATION INSTRUCTIONS
+                 ------------------------
+>In this 'how to', it is assumed that the application is to be installed on an Ubuntu server, deployed through Apache and mod_wsgi
+ however, the application is crossplatform and thus can run on virtually any OS/platform.
+>Detailed instructions on how to install the three application(python, django, postgresql) are available on the 
+ provided URLs.
+
+1. Update and upgrade the system
+    apt-get update
+    apt-get upgrade
+2. Install python version 2.6 or 2.7 if not already installed (www.python.org/downloads/)
+3. Install django version == 1.8 (www.djangoproject.com/download/) 
+    pip install Django==1.8
+    
+4. Download and install postgresql version >= 9.1 (http://www.postgresql.org/download/linux/ubuntu/). Changed username to postgres to postgres2
+   so as not to interfere with any future users/roles:
+
+    ./configure
+    gmake
+    su
+    gmake install
+    adduser postgres2
+    mkdir /usr/local/pgsql/data
+    chown postgres /usr/local/pgsql/data
+    su - postgres
+    /usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data
+    /usr/local/pgsql/bin/postgres -D /usr/local/pgsql/data >logfile 2>&1 &
+    /usr/local/pgsql/bin/createdb skunkworks
+    /usr/local/pgsql/bin/psql skunkworks
+
+
+5. Install 'psycopg2' for the database interface(This is how Django interacts with postgresql)
+6. Install mod_wsgi (docs.djangoproject.com/ja/1.9/howto/deployment/wsgi/modwsgi/)
+
+    Django settings, such as Time Zones, database host and port, Allowed hosts, etc are available on the 'csv_converter/sw/settinps.py' file
